@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+</head>
+<body>
+
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form action="http://localhost:3000/accounts/process-register" method="post">
+
+                <div class="form-outline mb-4">
+                  <input type="text" class="form-control form-control-lg" id="txtUsername" name="username"/>
+                  <label class="form-label" for="txtUsername">Username</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" class="form-control form-control-lg" id="txtPassword" name="password"/>
+                  <label class="form-label" for="txtPassword">Password</label>                                      
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" class="form-control form-control-lg" id="txtEmail"  name="email"/>
+                  <label class="form-label" for="txtEmail">Email</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" class="form-control form-control-lg" id="txtPhone" name="phone"/>
+                  <label class="form-label" for="txtPhone">Phone</label>
+                </div>
+              
+
+                <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" id="txtAddress" name="address"/>
+                    <label class="form-label"for="txtAddress">Address</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" id="txtFullname" name="fullname"/>
+                    <label class="form-label" for="txtFullname">Fullname</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtIsAdmin" class="form-label">IsAdmin </label>
+                    <select name="IsAdmin" class="form-control">
+                        <option value="0" selected>Không Phải</option>
+                        <option value="1">phải</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtAvatar">Avatar:</label>
+                    <input id="txtAvatar" class="form-control" type="text" name="avatar">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtStatus">Status</label>                      
+                    <select name="Status" class="form-control">
+                        <option value="0">Không hoạt động</option>
+                        <option value="1" selected>Hoạt động</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                </div>
+             
+              </form>
+              
+              <form action="" method="post">
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="http://localhost:3000/accounts/login"
+                  class="fw-bold text-body"><u>Login here</u></a></p>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/angular.min.js"></script>
+
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <title>Title</title>
+  
+
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <form action="/products/types" method="post">   
+        <div>
+            <select name="type" id="type" > 
+                <option value="" selected>Chon</option>     
+                <option ng-repeat="item in producttypes track by $index"  value="{{ item.Id}}">{{ item.Name }}</option>      
+            </select>
+        </div> 
+            <button type="submit">SEND</button>     
+    </form>     
+
+    <div class="headerr">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-primary p-4">
+            <h5 class="text-white h4">Collapsed content</h5>
+            <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+        </nav>
+    </div>
+
+    
+    <table class="table table-light table-striped mt-2">
+        <thead class="table-secondary"> 
+            <tr>
+                <th>ID</th>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>ProductTypeld</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr ng-repeat="item in products track by $index">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ item.SKU }}</td>
+                <td>{{ item.NamePr }}</td>
+                <td>{{ item.Description }}</td>
+                <td>{{ item.Price }}</td>
+                <td>{{ item.Stock }}</td>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Image }}</td>
+                <td>{{ item.Status.data[0] }}</td>
+                <td>
+                    <label for=""> <a href="EditProduct.html?id={{item.Id}}" class="btn btn-warning">Sửa</a></label>
+                    <label for=""> 
+                            <form action="http://localhost:3000/delete" method="post"
+                            onsubmit="return confirm('Bạn có chắc muốn xoá sản phẩm này?');">
+                            <input type="hidden" name="id" value="{{ item.Id }}">
+                            <button class="btn btn-danger" type="submit">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                    </form>
+                    </label>
+                    <label for=""> <a href="" class="btn btn-info" >Chi tiết sản phẩm</a></label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+
+    
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", ($scope, $http) => {
+            $http.get("http://localhost:3000/products/list-products")
+                .then(response => {
+                    $scope.fullList = response.data;
+                    $scope.products = $scope.fullList;
+                    console.log($scope.products);
+                }); 
+
+                $http.get("http://localhost:3000/products/types-products")
+                .then(response => {
+                    $scope.fullList = response.data;
+                    $scope.producttypes = $scope.fullList;
+                    console.log($scope.producttypes);
+                });  
+        });
+
+
+
+       
+    </script>
+</body>
+
+</html>

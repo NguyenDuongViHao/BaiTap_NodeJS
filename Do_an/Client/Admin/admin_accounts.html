@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <title>Title</title>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <!-- <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>
+       <a href="AddProduct.html">Thêm</a></button>     -->
+    <table class="table table-light table-striped mt-2">
+        <thead class="table-secondary"> 
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Fullname</th>
+                <th>IsAdmin</th>                
+                <th>Avatar</th>
+                <th>Status</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in account track by $index">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ item.Username }}</td>
+                <td>{{ item.Password }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.Phone }}</td>
+                <td>{{ item.Address }}</td>
+                <td>{{ item.FullName }}</td>
+                <td>{{ item.IsAdmin }}</td>
+                <td>{{ item.Avatar }}</td>
+                <td>{{ item.Status}}</td>
+                <td>
+                    <label for=""> <a href="EditProduct.html?id={{item.Id}}" class="btn btn-warning">Sửa</a></label>
+                    <label for=""> 
+                            <form action="http://localhost:3000/delete" method="post"
+                            onsubmit="return confirm('Bạn có chắc muốn xoá tài khoản này?');">
+                            <input type="hidden" name="id" value="{{ item.Id }}">
+                            <button class="btn btn-danger" type="submit">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                    </form>
+                    </label>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+
+    
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", ($scope, $http) => {
+            $http.get("http://localhost:3000/admin/list-accounts")
+                .then(response => {
+                    $scope.fullList = response.data;
+                    $scope.account = $scope.fullList;
+                    console.log($scope.account);
+                });    
+                
+              
+        });
+       
+
+    </script>
+</body>
+
+</html>

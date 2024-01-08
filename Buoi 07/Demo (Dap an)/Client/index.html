@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>Danh sách SV</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
+        <table class="table table-light">
+            <thead class="thead-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>MSSV</th>
+                    <th>Họ</th>
+                    <th>Tên</th>
+                    <th>Điểm LT</th>
+                    <th>Điểm TH</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in danhsach track by $index">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ item.MSSV }}</td>
+                    <td>{{ item.Ho }}</td>
+                    <td>{{ item.Ten }}</td>
+                    <td>{{ item.DiemLT }}</td>
+                    <td>{{ item.DiemTH }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", ($scope, $http) => {
+            $http.get("http://localhost:3000")
+                .then(response => {
+                    $scope.danhsach = response.data;
+                });
+        });
+    </script>
+</body>
+
+</html>
